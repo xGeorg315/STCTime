@@ -16,8 +16,10 @@ body {
 }
 
 .logo {
-  /*margin-top: -250px;
-  margin-bottom: 150px;*/
+  
+  margin-top: 75px;
+  /*margin-bottom: 150px;*/
+  height: 80px;
   width: 140px;
   top: 100px;
   bottom: 540px;
@@ -38,7 +40,7 @@ body {
 .screen-1 .logo {
   margin-top: -3em;
 }
-.screen-1 .email {
+.screen-1 .username {
   background: white;
   box-shadow: 0 0 2em #e6e9f9;
   padding: 1em;
@@ -49,7 +51,7 @@ body {
   color: #4d4d4d;
   margin-top: -3em;
 }
-.screen-1 .email input {
+.screen-1 .username input {
   outline: none;
   border: none;
 }
@@ -57,15 +59,15 @@ body {
   color: black;
   font-size: 0.9em;
 }
-.screen-1 .email input:-ms-input-placeholder {
+.screen-1 .username input:-ms-input-placeholder {
   color: black;
   font-size: 0.9em;
 }
-.screen-1 .email input::placeholder {
-  color: black;
+.screen-1 .username input::placeholder {
+  color: rgba(0, 0, 0, 0.566);
   font-size: 0.9em;
 }
-.screen-1 .email ion-icon {
+.screen-1 .username ion-icon {
   color: #4d4d4d;
   margin-bottom: -0.2em;
 }
@@ -88,7 +90,7 @@ body {
   font-size: 0.9em;
 }
 .screen-1 .password input:-ms-input-placeholder {
-  color: black;
+  color: hsla(0, 0%, 0%, 0.564);
   font-size: 0.9em;
 }
 .screen-1 .password input::placeholder {
