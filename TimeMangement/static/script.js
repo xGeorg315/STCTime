@@ -128,6 +128,19 @@ function deleteEvent() {
 }
 
 function initButtons() {
+
+  document.getElementById('logout').addEventListener('click',() =>{
+    let data = new FormData();
+    data.append('logout','logout')
+    fetch('/calendar', {
+
+      method: 'POST',
+      body: data,
+
+    });
+
+  });
+
   document.getElementById('nextButton').addEventListener('click', () => {
     nav++;
     load();

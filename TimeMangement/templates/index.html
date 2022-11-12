@@ -19,12 +19,23 @@
     
     <div id="container">
       <div id="header">
+        <button id="logout">log out</button>
         <div id="monthDisplay"></div>
         <div>
           <button id="backButton">Back</button>
           <button id="nextButton">Next</button>
+          
         </div>
       </div>
+      {% if id > 0 %}
+      <details>
+        <summary>Workers</summary>
+        {% for item in Users %}
+        <p><button >{{item}}</button></p>
+       
+        {% endfor %}
+      </details>  
+      {% endif %}
 
       <div id="weekdays">
         <div>Sunday</div>

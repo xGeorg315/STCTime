@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from TimeMangement.views import LoginSite
-from TimeMangement.views import calendar
+from TimeMangement.views import calendar,logout_user
+
+LOGOUT_REDIRECT_URL = '/logout'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login', LoginSite),
-    path('calendar', calendar)
+    path('calendar', calendar, name = 'calendar'),
+    path('logout',logout_user, name = 'logout')
+    
 ]

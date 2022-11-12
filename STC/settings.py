@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*','192.168.0.221', '192.168.0.234','127.0.0.1','192.168.0.134', 'localhost']
 
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Application definition

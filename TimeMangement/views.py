@@ -3,8 +3,10 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
 
 # Create your views here.
 
@@ -16,6 +18,7 @@ def LoginSite(request):
     if request.user.is_authenticated:
 
         return redirect(calendar)  
+    
 
     else:    
 
@@ -30,14 +33,39 @@ def LoginSite(request):
 
                 login(request, user) 
         
-                return redirect(calendar)
+                return redirect('calendar')
 
-        
+    return render(request, 'login.html')
 
-    return render(request, 'login.html') 
 
-@login_required
+@csrf_exempt
+@login_required(login_url='http://127.0.0.1:8000/login')
 def calendar (request):
 
+    if request.method == 'POST':
+        if request.POST['logout'] == 'logout':
+            logout(request)
 
-    return render(request, 'index.html')
+
+    if request.user.groups.filter(name='Supervisor').exists():  
+        User = get_user_model()
+        User_all = User.objects.filter(groups__name='Employees')
+        id = 1
+
+    elif request.user.groups.filter(name='HR').exists():  
+        User = get_user_model()
+        User_Employees = User.objects.filter(groups__name='Employees')
+        User_Supervisor = User.objects.filter(groups__name='Supervisor')
+        User_all= User_Employees | User_Supervisor
+        id = 2
+  
+    else:
+        User_all= ''
+        id = 0
+
+    return render(request, 'index.html', {'Users': User_all , 'id':id})
+
+
+def logout_user(request):
+    
+    return render(request,'logout.html')

@@ -11,7 +11,7 @@ function LogIN(){
     data.append('username', Username);
     data.append('password', Password);
 
-    fetch('/test/', {
+    fetch('/accounts/login/?next=/calendar/', {
 
         method: 'POST',
         body: data
