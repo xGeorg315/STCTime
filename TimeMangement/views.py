@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from .models import userdaten
 
 
 # Create your views here.
@@ -43,8 +44,18 @@ def LoginSite(request):
 def calendar (request):
 
     if request.method == 'POST':
-        if request.POST['logout'] == 'logout':
+        if request.POST['type'] == 'logout':
             logout(request)
+        elif request.POST['type'] == 'vacation':
+            userdaten.objects.create(username = request.user, date_v = request.POST['data'], date_w = '', date_k = '')
+            print('1')
+
+        elif request.POST['type'] == 'krank':
+            print('krank')
+        elif request.POST['type'] == 'work':
+            print('work')
+        else:
+            print('komisch')
 
 
     if request.user.groups.filter(name='Supervisor').exists():  

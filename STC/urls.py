@@ -18,7 +18,7 @@ from django.urls import path
 from TimeMangement.views import LoginSite
 from TimeMangement.views import calendar,logout_user
 
-LOGOUT_REDIRECT_URL = '/logout'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

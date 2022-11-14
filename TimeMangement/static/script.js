@@ -1,7 +1,7 @@
 let nav = 0;
 let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-let data = new FormData();
+
 
 
 const calendar = document.getElementById('calendar');
@@ -12,24 +12,24 @@ const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 
-function openModal(date) {
-  clicked = date;
+// function openModal(date) {
+//   clicked = date;
 
-  const eventForDay = events.find(e => e.date === clicked);
+//   const eventForDay = events.find(e => e.date === clicked);
 
-  if (eventForDay) {
-    document.getElementById('eventText').innerText = eventForDay.title;
-    deleteEventModal.style.display = 'block';
-  } else {
-    newEventModal.style.display = 'block';
-  }
+//   if (eventForDay) {
+//     document.getElementById('eventText').innerText = eventForDay.title;
+//     deleteEventModal.style.display = 'block';
+//   } else {
+//     newEventModal.style.display = 'block';
+//   }
 
-  backDrop.style.display = 'block';
-}
+//   backDrop.style.display = 'block';
+// }
 
 function load() {
   const dt = new Date();
-
+  window.localStorage.clear();
   if (nav !== 0) {
     dt.setMonth(new Date().getMonth() + nav);
   }
@@ -68,14 +68,23 @@ function load() {
         daySquare.id = 'currentDay';
       }
 
-      if (eventForDay) {
-        const eventDiv = document.createElement('div');
-        eventDiv.classList.add('event');
-        eventDiv.innerText = eventForDay.title;
-        daySquare.appendChild(eventDiv);
-      }
+      // if (eventForDay) {
+      //   const eventDiv = document.createElement('div');
+      //   eventDiv.classList.add('event');
+      //   eventDiv.innerText = eventForDay.title;
+      //   daySquare.appendChild(eventDiv);
+      // }
 
-      daySquare.addEventListener('click', () => openModal(dayString));
+      daySquare.addEventListener('click', () =>{ 
+        saveEvent(dayString)
+        daySquare.style.backgroundColor = "#bcbcbc"
+      });
+      daySquare.addEventListener('contextmenu', (ev) => {
+        ev.preventDefault();
+        deleteEvent()
+        daySquare.style.backgroundColor = "#FFFFFF"
+      });
+      
     } else {
       daySquare.classList.add('padding');
     }
@@ -84,38 +93,27 @@ function load() {
   }
 }
 
-function closeModal() {
-  eventTitleInput.classList.remove('error');
-  newEventModal.style.display = 'none';
-  deleteEventModal.style.display = 'none';
-  backDrop.style.display = 'none';
-  eventTitleInput.value = '';
-  clicked = null;
-  load();
-}
+// function closeModal() {
+//   eventTitleInput.classList.remove('error');
+//   newEventModal.style.display = 'none';
+//   deleteEventModal.style.display = 'none';
+//   backDrop.style.display = 'none';
+//   eventTitleInput.value = '';
+//   clicked = null;
+//   load();
+// }
 
-function saveEvent() {
-  if (eventTitleInput.value) {
+function saveEvent(date) {
+  if (true) {
     eventTitleInput.classList.remove('error');
-
+    clicked = date
     events.push({
       date: clicked,
-      title: eventTitleInput.value,
+      
     });
     
-    data.append('username', clicked);
-    data.append('password', eventTitleInput.value);
-    
-
-    fetch('/test', {
-
-      method: 'POST',
-      body: data
-
-    });
-
     localStorage.setItem('events', JSON.stringify(events));
-    closeModal();
+    // closeModal();
   } else {
     eventTitleInput.classList.add('error');
   }
@@ -124,14 +122,15 @@ function saveEvent() {
 function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
   localStorage.setItem('events', JSON.stringify(events));
-  closeModal();
+  // closeModal();
 }
 
 function initButtons() {
 
   document.getElementById('logout').addEventListener('click',() =>{
     let data = new FormData();
-    data.append('logout','logout')
+    data.append('data', '');
+    data.append('type', 'logout');
     fetch('/calendar', {
 
       method: 'POST',
@@ -151,11 +150,69 @@ function initButtons() {
     load();
   });
 
-  document.getElementById('saveButton').addEventListener('click', saveEvent);
-  document.getElementById('cancelButton').addEventListener('click', closeModal);
-  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
-  document.getElementById('closeButton').addEventListener('click', closeModal);
-}
+  // document.getElementById('saveButton').addEventListener('click', saveEvent);
+  // document.getElementById('cancelButton').addEventListener('click', closeModal);
+  // document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+  // document.getElementById('closeButton').addEventListener('click', closeModal);
 
-initButtons();
+  document.getElementById('vac').addEventListener('click',()=> {
+    let data = new FormData();
+    let userdata = localStorage.getItem('events');
+    console.log(userdata);
+    data.append('data', userdata);
+    data.append('type', 'vacation');
+    localStorage.removeItem('events');
+    window.localStorage.clear();
+    console.log(data.getAll('data'));
+    console.log('local ' + localStorage.getItem('events'))
+    fetch('/calendar', {
+
+      method: 'POST',
+      body: data
+
+    });
+    
+    data.delete('data');
+    data.delete('type');
+    console.log(data.getAll('data'));
+    load();
+  });
+
+  document.getElementById('work').addEventListener('click',()=> {
+    let data = new FormData();
+    data.append('data', localStorage.getItem('events'));
+    data.append('type', 'work');
+    
+    localStorage.clear();
+    fetch('/calendar', {
+
+      method: 'POST',
+      body: data
+
+    });
+    
+    data.delete('data');
+    data.delete('type');
+    load();
+  });
+
+  document.getElementById('krank').addEventListener('click',()=> {
+
+    let data = new FormData();
+    data.append('data', localStorage.getItem('events'));
+    data.append('type', 'krank');
+    localStorage.clear();
+    fetch('/calendar', {
+
+      method: 'POST',
+      body: data
+
+    });
+    data.delete('data');
+    data.delete('type');
+    load();
+  });
+
+}
 load();
+initButtons();

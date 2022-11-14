@@ -8,7 +8,7 @@ details {
   position: fixed;
   font-size: large;
   margin-left: -15em;
-  margin-top: 0em;
+  margin-top: 4em;
 }
 details details {
   position: relative;
@@ -16,6 +16,13 @@ details details {
   
  
 }
+#Send {
+  position: fixed;
+  font-size: large;
+  margin-left: -15em;
+  margin-top: 2em;
+}
+
 
 button {
   width: 75px;

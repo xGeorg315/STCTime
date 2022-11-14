@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  {% load static %}
-  <script type="module" src="{% static '/script.js' %}"></script>
-  <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}"/>
+
 
 
  
@@ -27,6 +25,7 @@
           
         </div>
       </div>
+
       {% if id > 0 %}
       <details>
         <summary>Workers</summary>
@@ -36,7 +35,11 @@
         {% endfor %}
       </details>  
       {% endif %}
-
+      <div id="Send">
+      <button id="vac">Vacation</button>
+      <button id="work">Work</button>
+      <button id="krank">Krank</button>
+      </div>
       <div id="weekdays">
         <div>Sunday</div>
         <div>Monday</div>
@@ -70,6 +73,9 @@
 
     <div id="modalBackDrop"></div>
 
-
+    {% load static %}
+    <script type="module" src="{% static '/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}"/>
+    
   </body>
 </html>
