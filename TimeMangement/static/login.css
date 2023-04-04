@@ -13,22 +13,26 @@ body {
   align-items: center;
   background: #dfddf419;
   height: 100vh;
-}
-
-.logo {
   
-  margin-top: 75px;
-  /*margin-bottom: 150px;*/
-  height: 80px;
-  width: 140px;
-  top: 100px;
-  bottom: 540px;
-  position: absolute;
-  background: url('logo_1.png')
+}
+
+
+.adv {
+
+  background-size: 100% 100%;
+  padding: 13em 13em;
+  border: 25px ;
+  margin: 60px;
+  background-image: url('adv_1.png');
+  border-radius: 30px;
+  background-repeat: no-repeat;
 
 }
+
+
 
 .screen-1 {
+  /*outline: 2px solid red;*/
   background: #f1f7fe;
   padding: 2em;
   display: flex;
@@ -36,11 +40,15 @@ body {
   border-radius: 30px;
   box-shadow: 0 0 2em #e6e9f9;
   gap: 2em;
+  background-image: url('logo_1.png');
+  background-repeat: no-repeat;
+  background-position: top 50px right 50px;
+
 }
-.screen-1 .logo {
-  margin-top: -3em;
-}
+
+
 .screen-1 .username {
+  /*outline: 2px solid green;*/
   background: white;
   box-shadow: 0 0 2em #e6e9f9;
   padding: 1em;
@@ -52,26 +60,32 @@ body {
   margin-top: -3em;
 }
 .screen-1 .username input {
+  /*outline: 2px solid green;*/
   outline: none;
   border: none;
 }
 .screen-1 .email input::-moz-placeholder {
+  /*outline: 2px solid green;*/
   color: black;
   font-size: 0.9em;
 }
 .screen-1 .username input:-ms-input-placeholder {
+  /*outline: 2px solid green;*/
   color: black;
   font-size: 0.9em;
 }
 .screen-1 .username input::placeholder {
+  /*outline: 2px solid green;*/
   color: rgba(0, 0, 0, 0.566);
   font-size: 0.9em;
 }
 .screen-1 .username ion-icon {
+  /*outline: 2px solid green;*/
   color: #4d4d4d;
   margin-bottom: -0.2em;
 }
 .screen-1 .password {
+  /*outline: 2px solid green;*/
   background: white;
   box-shadow: 0 0 2em #e6e9f9;
   padding: 1em;
@@ -82,29 +96,36 @@ body {
   color: #4d4d4d;
 }
 .screen-1 .password input {
+  /*outline: 2px solid green;*/
   outline: none;
   border: none;
 }
 .screen-1 .password input::-moz-placeholder {
+  /*outline: 2px solid green;*/
   color: black;
   font-size: 0.9em;
 }
 .screen-1 .password input:-ms-input-placeholder {
+  /*outline: 2px solid green;*/
   color: hsla(0, 0%, 0%, 0.564);
   font-size: 0.9em;
 }
 .screen-1 .password input::placeholder {
+  /*outline: 2px solid green;*/
   color: black;
   font-size: 0.9em;
 }
 .screen-1 .password ion-icon {
+  /*outline: 2px solid green;*/
   color: #4d4d4d;
   margin-bottom: -0.2em;
 }
 .screen-1 .password .show-hide {
+  /*outline: 2px solid green;*/
   margin-right: -5em;
 }
 .screen-1 .login {
+  /*outline: 2px solid green;*/
   padding: 1em;
   background: #3e4684;
   color: white;
@@ -113,6 +134,7 @@ body {
   font-weight: 600;
 }
 .screen-1 .footer {
+  /*outline: 2px solid green;*/
   display: flex;
   font-size: 0.7em;
   color: #5e5e5e;
@@ -120,10 +142,22 @@ body {
   padding-bottom: 10em;
 }
 .screen-1 .footer span {
+  /*outline: 2px solid green;*/
   cursor: pointer;
 }
 
 button {
+  /*outline: 2px solid green;*/
   cursor: pointer;
 }
+.plan {
 
+  background-size: 100% 100%;
+  padding: 10em 10em;
+  border: 25px ;
+  margin: 60px;
+  background-image: url('plan_1.png');
+  background-image: 20px 60px;
+  border-radius: 30px;
+  background-repeat: no-repeat;
+}
